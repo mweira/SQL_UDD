@@ -32,10 +32,18 @@ INSERT INTO Compras (Id, Primeiro_Nome, Ultimo_Nome, Idade, UF, Data_Compra, Val
 (12, 'Tiago', 'Rocha', 24, 'TO', '2024-01-30', 55.56),
 (7, 'Sofia', 'Cardoso', 27, 'ES', '2024-01-31', 60);
 
+-- MySQL
 SELECT * FROM Compras LIMIT 10;
 
+-- SQL Server
+SELECT TOP 10 FROM Compras;
 
--- SQL SERVER VS MYSQL
+-- SQL SERVER - FROM > WHERE > GROUP BY > HAVING > SELECT > ORDER BY
+
+-- MySQL - FROM > WHERE > SELECT > GROUP BY > HAVING > ORDER BY
+
+
+-- SQL SERVER VS MySQL 
  
 -- No MYSQL funciona:
 SELECT Id, Primeiro_Nome, AVG(Valor_Compra) AS AVG_Valor
@@ -50,12 +58,14 @@ GROUP BY 1, 2;
 
 
 -- A ORDEM DO WHERE
--- Group by vem depois do Where, olha isso:
+-- Group by vem depois do WHERE, olha isso:
 
 -- Funciona ok:
 SELECT Id, Primeiro_Nome, AVG(Valor_Compra) AS AVG_Compra
 FROM Compras
 GROUP BY Id, Primeiro_Nome;
+
+-- WHERE é lido logo após o FROM - Não sabe quem é AVG_Compra
 
 -- Não funciona:
 SELECT Id, Primeiro_Nome, AVG(Valor_Compra) AS AVG_Compra
