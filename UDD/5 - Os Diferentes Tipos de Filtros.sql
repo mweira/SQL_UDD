@@ -5,7 +5,7 @@ USE mkt;
 SELECT * FROM mkt.bank LIMIT 10;
 
 -- Contagem de linhas da tabela
-SELECT COUNT(*) AS Contagem FROM mkt.bank;
+SELECT COUNT(*) AS Contagem FROM mkt.bank;wwww
 
 -- Contagem de empregos - O DISTINCT seleciona valores únicos
 SELECT COUNT(DISTINCT job) As Contagem FROM mkt.bank;
@@ -83,3 +83,61 @@ WHERE job IN ("unemployed","student","blue-collar");
 SELECT job, COUNT(*) AS Contagem FROM bank 
 WHERE job IN ("unemployed","student","blue-collar")
 GROUP BY job;
+
+-- Campanha herdeiro
+
+-- Correria
+-- Usando o Between
+SELECT * FROM mkt.bank
+WHERE y = 'yes' AND job in ('unemployed', 'student') AND age BETWEEN 18 AND 30;
+
+-- Usando o NOT
+SELECT * FROM mkt.bank
+WHERE NOT  y = 'yes' AND job NOT in ('unemployed', 'student') AND age BETWEEN 18 AND 30;
+
+-- WHERE age IS NULL / WHERE job IS NOT NULL
+
+-- FILTRO DE STRINGS
+CREATE TABLE mkt.nomes (
+    primeiro_nome VARCHAR(50),
+    ultimo_nome VARCHAR(50)
+);
+
+INSERT INTO mkt.nomes (primeiro_nome, ultimo_nome) VALUES 
+('Ana', 'Silva'),
+('Antônio', 'Costa'),
+('Aline', 'Machado'),
+('André', 'Lima'),
+('Alice', 'Santos'),
+('Alberto', 'Oliveira'),
+('Amanda', 'Pereira'),
+('Alex', 'Martins'),
+('Aurora', 'Souza'),
+('Arthur', 'Rocha'),
+('Augusto', 'Almeida'),
+('Ariel', 'Barros'),
+('Anita', 'Carvalho'),
+('Anderson', 'Dias'),
+('Aurélio', 'Fernandes'),
+('Afonso', 'Gonçalves'),
+('Alessandra', 'Henriques'),
+('Alan', 'Ishida'),
+('Alana', 'Jardim'),
+('Alexandre', 'Kuwabara');
+
+SELECT * FROM mkt.nomes;
+
+-- Filtro de string
+-- Uso do UPPER
+SELECT * FROM mkt.nomes
+WHERE UPPER(primeiro_nome) = 'ANA'; -- filtra Ana, ANA, ana 
+
+-- Filtro com nome que contem ___
+SELECT * FROM mkt.nomes 
+WHERE UPPER(primeiro_nome) LIKE '%GUSTO%';
+
+-- BETWEEN com STRING
+-- AB AC AD ... AR
+SELECT * FROM mkt.nomes 
+WHERE UPPER(primeiro_nome) BETWEEN 'AB' AND 'AR';
+
